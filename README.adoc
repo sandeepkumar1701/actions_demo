@@ -4,7 +4,7 @@
 :source-highlighter: prettify
 :project_id: gs-maven
 
-This guide walks you through using Maven to build a simple Java project.
+This guide walks you through using Maven to build a simple Java project. [Access original repo here](https://github.com/spring-guides/gs-maven)
 
 == What you'll build
 
