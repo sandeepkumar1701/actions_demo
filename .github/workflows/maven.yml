@@ -21,7 +21,9 @@ jobs:
       run: |
         java -version
         mvn --version
-    - name: Package with Maven
+    - name: Run Tests
+      run: mvn -B test
+    - name: Package the Application:
       run: |
         mvn -B package
         ls -al ${{ github.workspace }}/target
