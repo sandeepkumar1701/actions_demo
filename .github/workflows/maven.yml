@@ -22,7 +22,7 @@ jobs:
         java -version
         mvn --version
     - name: Run Tests
-      run: mvn -B test
+      run: mvn test
     - name: Package the Application:
       run: |
         mvn -B package
