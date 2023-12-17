@@ -23,7 +23,7 @@ jobs:
         mvn --version
     - name: Run Tests
       run: mvn test
-    - name: Package the Application:
+    - name: Package the Application
       run: |
         mvn -B package
         ls -al ${{ github.workspace }}/target
