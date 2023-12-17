@@ -28,4 +28,4 @@ jobs:
         mvn -B package
         ls -al ${{ github.workspace }}/target
     - name: Run the Application
-      run: java -jar gs-maven-0.1.0.jar
+      run: java -jar ${{ github.workspace }}/target/gs-maven-0.1.0.jar
