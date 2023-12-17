@@ -8,7 +8,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Check docker
+    - name: Checkout SCM
+      uses: actions/checkout@v3
+    - name: list workspace contents
+      run: ls -al ${{ github.workspace }}
+    - name: Setup Java and Maven
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '8'
+    - name: Check java and mvn version
       run: |
-        docker --version
-        docker ps
+        java -version
+        mvn --version
+    - name: Run Tests
+      run: mvn test
+    - name: Package the Application
+      run: |
+        mvn -B package
+        ls -al ${{ github.workspace }}/target
+    - name: Run the Application
+      run: java -jar gs-maven-0.1.0.jar
