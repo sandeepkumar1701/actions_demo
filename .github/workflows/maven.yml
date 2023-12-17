@@ -40,3 +40,5 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Push the image
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME}}:${{ github.run_number }}
+    - name: Run as container
+      run: docker run --rm --name test ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME}}:${{ github.run_number }}
