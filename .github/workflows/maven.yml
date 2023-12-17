@@ -8,10 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout SCM
+      uses: actions/checkout@v3
     - name: list workspace contents
-      run: ls -al ${{ github.workspace }}\
-    - uses: actions/setup-java@v4
+      run: ls -al ${{ github.workspace }}
+    - name: Setup Java and Maven
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '8'
