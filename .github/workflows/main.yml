@@ -7,6 +7,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Check the workspace
+        run: ls -la ${{ github.workspace }}
+      - name: Install Java 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '8'
       - name: Check Java and Maven Versions
         run: |
           java -version
