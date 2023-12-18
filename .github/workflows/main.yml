@@ -18,3 +18,9 @@ jobs:
         run: |
           java -version
           mvn --version
+      - name: Run the tests
+        run: mvn test
+      - name: Package the application
+        run: mvn package
+      - name: Test the jar file
+        run: java -jar ${{ github.workspace }}/target/gs-maven-0.1.0.jar
