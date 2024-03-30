@@ -1,6 +1,8 @@
 name: Java CI with Maven
 run-name: ${{ github.actor }} is building a java application
 on: [push]
+env:
+   IMAGE_NAME: "demo-jar"
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -25,3 +27,15 @@ jobs:
          run: mvn package
        - name: test the jar file
          run: java -jar ${{ github.workspace }}/target/gs-maven-0.1.0.jar
+       - name: dockerized the applications
+         run: docker build -t  ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }} .
+       - name: run the container
+         run: docker run --rm  --name web  ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+       - name: Docker login
+         uses: docker/login-action@v3
+         with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+       - name: push to the repository
+         run:  ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
