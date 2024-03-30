@@ -38,4 +38,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
        - name: push to the repository
-         run:  ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
